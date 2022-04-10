@@ -1,0 +1,18 @@
+﻿@page
+@model CategoryDeleteModel
+@{
+    ViewData["Title"] = "Usuwanie kategorii";
+}
+
+<br />
+<br />
+<h5>Usunąć kategorię " @Html.DisplayFor(model => Model.CategoryList[(int)Model.Id].LongName)" ?</h5>
+<br />
+<br />
+
+<div class="container">
+    <form class="form-horizontal" method="post">
+        <input type="submit" value="Usuń" class="btn btn-danger" /> |
+        <a asp-page="CategoryList">Powrót</a>
+    </form>
+</div>

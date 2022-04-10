@@ -1,0 +1,58 @@
+﻿@page
+@model Projektos.Pages.Admin.adminareaModel
+@{
+    ViewData["Title"] = "Admin Mode";
+}
+
+<br />
+<figure class="text-center">
+    <h1> Admin Page </h1>
+</figure>
+<br />
+<h2>Lista produktów</h2>
+<br />
+<div class="row col-sm-12">
+    <a asp-page="/Create" class="btn btn-primary">Dodaj</a>
+</div>
+<br />
+<br />
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">
+                @Html.DisplayNameFor(model => Model.ProductList[0].Id)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => Model.ProductList[0].Name)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => Model.ProductList[0].Price)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => Model.ProductList[0].CategoryId)
+                <form method="post">
+                    <select asp-for="CategoryId" asp-items="Model.CategorySelect"></select>
+                    <button class="btn btn btn-primary">Filtruj</button>
+                </form>
+            </th>
+            <th scope="col">Akcja</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var p in Model.ProductList)
+        {
+            <tr>
+                <th scope="row">@Html.DisplayFor(m => p.Id)</th>
+                <td>@Html.DisplayFor(m => p.Name)</td>
+                <td>@Html.DisplayFor(m => p.Price)</td>
+                <td>@Html.DisplayFor(m => Model.CategoryList.FirstOrDefault(c => c.Id == p.CategoryId).LongName)</td>
+                <td>
+                    <a asp-page="/Details" asp-route-Id=@p.Id class="btn btn-outline-dark btn-sm">Szczegóły</a>
+                    <a asp-page="/Edit" asp-route-id=@p.Id class="btn btn-outline-dark btn-sm">Edytuj</a>
+                    <a asp-page="/Delete" asp-route-id=@p.Id class="btn btn-danger btn-outline-light btn-sm">Kasuj</a>
+                    <a asp-page="/Cart" asp-page-handler="Add" asp-route-id="@p.Id" class="btn btn-outline-dark btn-sm">Dodaj do koszyka</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

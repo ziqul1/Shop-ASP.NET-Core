@@ -1,0 +1,17 @@
+﻿@page
+@model Projektos.Pages.DeleteModel
+@{
+    ViewData["Title"] = "Usuwanie produktu";
+}
+
+<br />
+<h5>Czy na pewno chcesz usunąć produkt "@Html.DisplayFor(model => Model.Product.Name)"?</h5>
+<br />
+<br />
+
+<div class="container">
+    <form class="form-horizontal" method="post">
+        <input type="submit" value="Usuń" class="btn btn-danger" /> |
+        <a asp-page="Index">Powrót</a>
+    </form>
+</div>

@@ -1,0 +1,44 @@
+﻿@page
+@model Projektos.Pages.CategoryListModel
+@{
+    ViewData["Title"] = "Lista Kategorii";
+}
+
+<br />
+<h2>Lista kategorii</h2>
+<br />
+<div class="row col-sm-12">
+    <a asp-page="CategoryCreate" class="btn btn-primary btn-large">Dodaj</a>
+</div>
+<br />
+<br />
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">
+                @Html.DisplayNameFor(model => Model.CategoryList[0].Id)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => Model.CategoryList[0].ShortName)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => Model.CategoryList[0].LongName)
+            </th>
+            <th scope="col">Akcja</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var c in Model.CategoryList)
+        {
+            <tr>
+                <th scope="row">@Html.DisplayFor(m => c.Id)</th>
+                <td>@Html.DisplayFor(m => c.ShortName)</td>
+                <td>@Html.DisplayFor(m => c.LongName)</td>
+                <td>
+                    <a asp-page="CategoryEdit" asp-route-id=@c.Id class="btn btn-outline-dark">Edytuj</a>
+                    <a asp-page="CategoryDelete" asp-route-id=@c.Id class="btn btn-danger btn-outline-light">Kasuj</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

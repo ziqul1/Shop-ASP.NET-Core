@@ -1,0 +1,44 @@
+﻿@page
+@model Projektos.Pages.CreateModel
+@{
+    ViewData["Title"] = "Dodawanie produktu";
+}
+
+<br />
+<h2>Dodawanie produktu</h2>
+<br />
+<br />
+<div class="container">
+    <form class="form-horizontal" method="post">
+        <div class="form-group">
+            <label asp-for="newProduct.Name" class="control-label col-sm-2"></label>
+            <div class="col-sm-6">
+                <input asp-for="newProduct.Name" class="form-control">
+                <span asp-validation-for="newProduct.Name" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="newProduct.Price" class="control-label col-sm-2"></label>
+            <div class="col-sm-6">
+                <input asp-for="newProduct.Price" class="form-control">
+                <span asp-validation-for="newProduct.Price" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="newProduct.CategoryId" class="control-label col-sm-2"></label>
+            <div class="col-sm-6">
+                <select asp-for="newProduct.CategoryId" asp-items="Model.CategorySelect"></select>
+                <span asp-validation-for="newProduct.CategoryId" class="text-danger"></span>
+                @if (Model.FailMessage != null)
+                {
+                    <span class="text-danger">@Html.DisplayFor(model => Model.FailMessage)</span>
+                }
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button class="btn btn btn-primary">Zatwierdź</button>
+            </div>
+        </div>
+    </form>
+</div>

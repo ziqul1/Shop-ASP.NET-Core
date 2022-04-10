@@ -1,0 +1,62 @@
+﻿@page
+@model Projektos.Pages.CartModel
+@{
+    ViewData["Title"] = "Koszyk";
+}
+
+<br />
+<h2>Koszyk</h2>
+<br />
+<br />
+@{
+    if (Model.cart.Empty())
+    {
+        <tr>Koszyk pusty.</tr>
+    }
+    else
+    {
+        <form asp-page-handler="clear" method="post">
+            <button class="btn btn-default">Wyczyść koszyk</button>
+        </form>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">
+                        @Html.DisplayNameFor(model =>
+                        Model.productList[0].Item1.Id)
+                    </th>
+                    <th scope="col">
+                        @Html.DisplayNameFor(model =>
+                        Model.productList[0].Item1.Name)
+                    </th>
+                    <th scope="col">
+                        @Html.DisplayNameFor(model =>
+                        Model.productList[0].Item1.Price)
+                    </th>
+                    <th scope="col">Ilość</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var p in Model.productList)
+                {
+                    <tr>
+                        <th scope="row">@Html.DisplayFor(m => p.Item1.Id)</th>
+                        <td>@Html.DisplayFor(m => p.Item1.Name)</td>
+                        <td>@Html.DisplayFor(m => p.Item1.Price)</td>
+                        <td class="list-inline-item">
+                            <a asp-page-handler="Add" asp-route-id="@p.Item1.Id" class="btn btn-outline-primary">+</a>
+                            <a class="container border 4px solid black">@Html.DisplayFor(m => p.Item2)</a>
+                            <a asp-page-handler="Decrease" asp-route-id="@p.Item1.Id" class="btn btn-outline-primary">-</a>
+                            <a asp-page-handler="Delete" asp-route-id="@p.Item1.Id" class="btn btn-danger">Usuń</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+    if (Model.objectNotExist)
+    {
+        <span class="text-danger">Niektore obiekty dodane do koszyka zostały usuniete z bazy danych!</span>
+    }
+}

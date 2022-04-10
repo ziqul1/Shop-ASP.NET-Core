@@ -1,0 +1,33 @@
+﻿@page
+@model Projektos.Pages.DetailsModel
+@{
+    ViewData["Title"] = $"Szczegóły produktu {Model.Product.Name}";
+}
+
+<br />
+<h2>Szczegóły produktu</h2>
+<br />
+<form method="post">
+    <div class="col-sm-6">
+        <table>
+            <tr>
+                <td class="left-td">@Html.DisplayNameFor(model => Model.Product.Id): </td>
+                <td class="right-td">@Html.DisplayFor(model => Model.Product.Id)</td>
+            </tr>
+            <tr>
+                <td class="left-td">@Html.DisplayNameFor(model => Model.Product.Name): </td>
+                <td class="right-td">@Html.DisplayFor(model => Model.Product.Name)</td>
+            </tr>
+            <tr>
+                <td class="left-td">@Html.DisplayNameFor(model => Model.Product.Price): </td>
+                <td class="right-td">@Html.DisplayFor(model => Model.Product.Price)</td>
+            </tr>
+            <tr>
+                <td class="left-td">@Html.DisplayNameFor(model => Model.Product.CategoryId): </td>
+                <td class="right-td">@Html.DisplayFor(model => Model.Category.LongName)</td>
+            </tr>
+        </table>
+    </div>
+    <br />
+    <button class="btn btn btn-primary">Dodaj do koszyka</button>
+</form>
